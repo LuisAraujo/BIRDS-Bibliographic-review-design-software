@@ -1,0 +1,136 @@
+.icon-doc{
+    background-color: #797982;
+    margin-left: 10px;
+    min-height: 150px;
+    border-radius: 10px;
+    color: #797982;
+}
+
+.icon-doc img{
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 20%;
+}
+.icon-doc:hover{
+    cursor: pointer;
+    background-color: #57575e;
+    color: #57575e;;
+}
+
+.text-doc{
+    text-align: center;
+    font-size: 13px;
+    width: 100%;
+    height: 50px;
+    text-overflow: ellipsis;
+    display: block;
+    overflow: hidden;
+    font-weight: bold;
+}
+
+#bt-plus{
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+}
+
+#bt-plus:hover{
+  cursor: pointer;
+}
+
+.titulo-row{
+    margin-top: 20px;
+    font-size: 15px;
+}
+
+.bt-menu{
+    background-color: #efefef;
+    border: #bababa 2px solid;
+    font-size: 20px;
+    padding-left:10px;
+    padding-right:10px;
+    padding-top: 3px;
+    padding-bottom: 2px;
+}
+
+.celula-padrao-fichamento {
+   border: 1px solid #959595;
+   margin-bottom: 2px;
+
+}
+
+.row-fic{
+    margin-top: 0px;
+    margin-bottom: 0px;
+
+}
+
+.celula-titulo-fichamento {
+   text-align: center;
+}
+
+.cel-txt{
+    padding: 2px;
+    border: none;
+}
+
+.cel-txt .form-group{
+    margin: 0px;
+}
+
+textarea {
+    resize: none;
+}
+
+.menu{
+    background-color: #ffffff;
+    width: 270px;
+    height: 500px;
+    position: fixed;
+    left: 0px;
+    top:0px;
+    z-index: 9999;
+    display: none;
+    box-shadow: 2px 2px 5px rgba(20,20,20, 0.5);
+}
+
+#bt-menu-princ2{
+  border-bottom: 1px solid #2d2d2d;
+  color: #7f7f7f;
+  width: 100%;
+}
+
+#bt-menu-princ2:hover{
+    background-color: #f7f7f7;
+    color: #333333;
+}
+
+
+.conteiner-palavrachave-consulta{
+    width: 100%;
+    box-shadow: #adadad 1px 1px 1px 1px;
+
+}
+
+.conteiner-palavrachave-consulta .item{
+    padding: 2px;
+    font-size: 15px;
+}
+.conteiner-palavrachave-consulta .item:hover{
+    background-color: #0096dd;
+    color: #fff;
+    cursor: pointer;
+}
+
+
+#bt-salvar-fichamento{
+    float:left;
+    position: absolute;
+    left: 80.5%;
+}
+
+#bt-criar-linha{
+    float:left;
+    position: absolute;
+    left: 85.5%;
+}
