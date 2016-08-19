@@ -1,19 +1,22 @@
 .icon-doc{
-    background-color: #797982;
     margin-left: 10px;
     min-height: 150px;
     border-radius: 10px;
     color: #797982;
 }
 
+body{
+    font-family: "Roboto", "Roboto Bold";
+}
+
 .icon-doc img{
-    width: 50%;
-    margin-left: 25%;
+    width: 70%;
+    margin-left: 15%;
     margin-top: 20%;
 }
 .icon-doc:hover{
     cursor: pointer;
-    background-color: #57575e;
+
     color: #57575e;;
 }
 
@@ -40,18 +43,19 @@
 
 .titulo-row{
     margin-top: 20px;
-    font-size: 15px;
+    font-size: 17px;
+    font-weight: bold;
 }
-
+/*
 .bt-menu{
     background-color: #efefef;
     border: #bababa 2px solid;
     font-size: 20px;
-    padding-left:10px;
+    padding-left:20px;
     padding-right:10px;
     padding-top: 3px;
     padding-bottom: 2px;
-}
+}*/
 
 .celula-padrao-fichamento {
    border: 1px solid #959595;
@@ -85,7 +89,7 @@ textarea {
 .menu{
     background-color: #ffffff;
     width: 270px;
-    height: 500px;
+   /* height: 250px; */
     position: fixed;
     left: 0px;
     top:0px;
@@ -93,16 +97,29 @@ textarea {
     display: none;
     box-shadow: 2px 2px 5px rgba(20,20,20, 0.5);
 }
+#bt-menu-princ, #bt-menu-princ2{
+    margin-left: 0px;
+    color: #fff;
+    font-size: 25px;
+}
+
 
 #bt-menu-princ2{
   border-bottom: 1px solid #2d2d2d;
   color: #7f7f7f;
   width: 100%;
+  display: block;
 }
 
 #bt-menu-princ2:hover{
     background-color: #f7f7f7;
     color: #333333;
+}
+
+.bt-iten-menu-princ2{
+    color: #242424;
+    width: 100%;
+        display: block;
 }
 
 
@@ -123,7 +140,7 @@ textarea {
 }
 
 
-#bt-salvar-fichamento{
+#bt-salvar-notas {
     float:left;
     position: absolute;
     left: 80.5%;
@@ -133,4 +150,72 @@ textarea {
     float:left;
     position: absolute;
     left: 85.5%;
+}
+
+.barra{
+    padding-top: 0px;
+    padding-bottom: 10px;
+    background-color: #557dbf;
+    border-bottom: 5px solid #4968a0;
+    color: #fff !important;
+
+}
+
+.barra .navbar-brand{
+    position: absolute;
+    left: 5px;
+    top: -7px;
+}
+
+#conteiner-lista-palavras{
+    margin-top: 20px;
+    margin-left: 10px;
+
+}
+
+.conteiner-palavra{
+    padding: 5px;
+    background-color:#557dbf;
+    margin-top: 10px;
+    color: #fff;
+}
+
+.conteiner-palavra:hover{
+    background-color: #6291dd;
+    cursor: pointer;
+}
+
+.titulo-palavra{
+    margin-left: 10px;
+    margin-right: 20px;
+    font-weight: bold;
+}
+
+.qtd-palavra{
+    border: solid 1px #4968a0;
+    border-radius: 20px;
+    padding: 3px;
+    background-color: #fff;
+    color: #000
+}
+
+#titulo-menu{
+    padding-left: 20px;
+}
+
+
+.conteiner-dados-nota{
+    width: 40%;
+    display: table-cell;
+    word-wrap: break-word;
+    border:  1px #777777 solid;
+    border-collapse: collapse;
+    padding: 2px;
+}
+
+.cabecario-dados-nota{
+    background-color: #557dbf;
+    color: #fff;
+    text-align: center;
+    border: none;
 }

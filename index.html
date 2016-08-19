@@ -19,17 +19,45 @@
     <script src="script/jquery.js"></script>
     <script src="script/script.js"></script>
 
-
     <title>BIDS - Bibliographic Review Design Software</title>
 </head>
 
 <body>
 
-<div id="menu-princ" class="menu">
+<div  id="menu-princ" class="menu">
+
     <a id="bt-menu-princ2" class="navbar-brand" href="#" >
-    <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
-    Fichamentos
+        <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+        Fichamentos
     </a>
+
+    <a id="bt-busca-fichamento" class="bt-iten-menu-princ2 navbar-brand" href="#" >
+        <span style="color: #0196D0" class="glyphicon glyphicon-search" aria-hidden="true"></span>
+        Buscar
+    </a>
+
+    <a id="bt-ger-palavras" class="bt-iten-menu-princ2 navbar-brand" href="#" >
+        <span style="color: #0196D0"  class="glyphicon glyphicon-list" aria-hidden="true"></span>
+        Gerenciar Palavras
+    </a>
+
+    <a  id="bt-confing" class="bt-iten-menu-princ2 navbar-brand" href="#" >
+        <span style="color: #0196D0"  class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+       Preferências
+    </a>
+
+    <a   id="bt-dados-fichamentos" class="bt-iten-menu-princ2 navbar-brand" href="#" >
+       <span style="color: #0196D0"  class="glyphicon glyphicon-save" aria-hidden="true"></span>
+       Backup
+    </a>
+
+
+    <a id="bt-sobre-birds" class="bt-iten-menu-princ2 navbar-brand" href="#" >
+        <span style="color: #0196D0"  class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+        Sobre
+    </a>
+
+
 </div>
 
 
@@ -43,11 +71,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">
-                <button id="bt-menu-princ" type="button" class="btn bt-menu" aria-label="Left Align">
-                    <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
-                </button>
-                Fichamentos</a>
+            <a id="bt-menu-princ" class="navbar-brand" href="#">
+                    <div id="bt-icon-menu-princ" >
+                    <span  id="icone-menu" class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+                    <span id="titulo-menu">Fichamentos</span>
+                    </div>
+            </a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
@@ -90,7 +119,9 @@
     </div>
 
 
-    <div class="titulo-row">Fichamentos Recentes</div>
+    <div class="titulo-row">
+       Fichamentos Recentes
+    </div>
 
     <div id="icon-fic" class="row">
 
@@ -103,7 +134,7 @@
 </div>
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
 <script src="script/bootstrap.min.js"></script>
 
 </body>

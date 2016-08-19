@@ -10,7 +10,7 @@ $autores = $ref_ex[0];
 $titulo = strtoupper($ref_ex[1]);
 
 //buscar artigo
-$strBuscaArtigo = "select id from artigo where referencia ='$ref_ex'";
+$strBuscaArtigo = "select id from artigo where referencia ='$ref'";
 
 $idArtigo = mysql_query($strBuscaArtigo) or die(mysql_error());
 

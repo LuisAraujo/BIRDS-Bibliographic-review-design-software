@@ -1,7 +1,13 @@
 $(document).ready( function(){
+    $("#bt-ger-palavras").click(function(){
+        abrirPaginaPalavra();
+    });
 
+    $("#bt-busca-fichamento").click(function(){
+        abrirPaginaBusca();
+    })
     $("#bt-plus").click(function(){
-            abrirNovoFichamento();
+        abrirNovoFichamento();
     });
 
     $("#bt-criar-novo").click(function(){
@@ -13,10 +19,10 @@ $(document).ready( function(){
         .done(function(data){
             data_json = jQuery.parseJSON(data);
             for(var i = 0; i< data_json.length; i++){
-                console.log(data_json[i]["idfichamento"]);
+
                 strhtml = "<div id-fic="+data_json[i]["idfichamento"]+" class='bt-icon-doc col-md-2'>"+
                 "<div class='icon-doc'><img src='img/icon.png'></div> <div class='text-doc'>"+
-                data_json[i]['titulo']+"</div></div>";
+                data_json[i]['titulo']+"</div>";
                 $("#icon-fic").append(strhtml);
             }
 
@@ -30,12 +36,17 @@ $(document).ready( function(){
         })
 
     $("#bt-menu-princ").click(function(){
-        $("#menu-princ").show();
+        $("#menu-princ").show("fast");
     })
 
-    $("#bt-menu-princ2").click(function(){
-        $("#menu-princ").hide();
-    })
+    $(window).click(function(evt) {
+
+        if ((evt.target.id != "bt-menu-princ") && (evt.target.id != "bt-icon-menu-princ") &&
+            (evt.target.id !="titulo-menu") && (evt.target.id !="icone-menu"))
+            $("#menu-princ").hide("fast");
+    });
+
+
 
 
 
@@ -85,3 +96,11 @@ function abrirPagina(dados){
     window.location.replace("editmode/index.html?"+dados);
 }
 
+
+function abrirPaginaPalavra(){
+    window.location.replace("words/index.html");
+}
+
+function abrirPaginaBusca(){
+    window.location.replace("find/index.html");
+}

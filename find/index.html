@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<html lang="en">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>BIDS - Bibliographic Review Design Software</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../style/bootstrap.css" rel="stylesheet">
+    <link href="../style/sticky-footer-navbar.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../style/grid.css" rel="stylesheet">
+
+    <link href="../style/style.css" rel="stylesheet">
+
+    <script src="../script/jquery.js"></script>
+
+    <script src="../script/findMode.js"></script>
+
+
+
+</head>
+
+<body>
+<div id="menu-princ" class="menu">
+    <a id="bt-menu-princ2" class="navbar-brand" href="#" >
+        <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+        Fichamentos
+    </a>
+
+    <a id="bt-back-page" class="bt-iten-menu-princ2 navbar-brand" href="#" >
+        <span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>
+        Voltar
+    </a>
+
+</div>
+
+
+<!-- Fixed navbar -->
+<nav class="barra navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a id="bt-menu-princ" class="navbar-brand" href="#">
+                <div id="bt-icon-menu-princ" >
+                    <span  id="icone-menu" class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+                    <span id="titulo-menu">Fichamentos</span>
+                </div>
+            </a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div class="container">
+    <div class="titulo-row">
+        <div class="input-group">
+            <input id="buscaFichamento" style="width: 500px;" type="text" class="form-control" placeholder="O que você procura?" aria-describedby="basic-addon1">
+            <span style="background-color: #6291dd; color: #fff; width: 50px" class="input-group-addon" id="basic-addon1"> <span  class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+        </div>
+        <form id="form-opcao" role="form">
+            <div class="radio-inline">
+                <label><input value="0" type="radio" name="optradio" checked>Palavra-Chave</label>
+            </div>
+            <div class="radio-inline">
+                <label><input value="1" type="radio" name="optradio">Autores</label>
+            </div>
+            <div class="radio-inline">
+                <label><input value="2" type="radio" name="optradio">Título</label>
+            </div>
+        </form>
+
+    </div>
+    <div style="font-weight: normal" id="conteiner-lista-notas">
+
+
+    </div>
+
+
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="../script/bootstrap.min.js"></script>
+
+</body>
+</html>
