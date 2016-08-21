@@ -37,4 +37,5 @@ alfa
 
 
 *Pagina Inicial
-![Alt text]("tela.png")
+
+![Tela Inicial]("https://github.com/LuisAraujo/BIRDS-Bibliographic-review-design-software/blob/master/tela.png")
