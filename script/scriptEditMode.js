@@ -6,9 +6,14 @@ $(document).ready( function(){
 
     buscarDadosFichamento();
 
-    $("#bt-salvar-fichamento").click(function(){
+    $("#bt-salvar-fichamento-pdf").click(function(){
        exportAsPHPFichamento();
     });
+    $("#bt-salvar-fichamento-odt").click(function(){
+        exportAsODTFichamento();
+    });
+
+
 
     $("#bt-criar-linha").click(function(){
         insereNota("novo");
@@ -51,7 +56,9 @@ function buscarDadosFichamento(){
     //pega segunda pate
     idFic = arr[1];
 
-     var jquery = $.post( "../backend/buscaDadosFichamentoById.php",{id : arr[1]}, function() { })
+    $("body").attr("idfic", idFic);
+
+     var jquery = $.post( "../backend/buscaDadosArtigosById.php",{id : arr[1]}, function() { })
         .done(function(data){
             data_json = jQuery.parseJSON(data);
             $("#celula-titulo-fichamento").append(data_json["titulo"]);
@@ -142,6 +149,12 @@ function exportAsPHPFichamento(){
     });
 
     conteudo +="</table>";
+    conteudo +="<br><br><div style='text-align: center; color:#999; font-size: 12px'>"+
+    "Documento gerado pelo BIRDS (Bibliographic Review Design Software) desenvolvido por Luis Araujo (luisaraujo.github.io)." +
+    "<br>" +
+    "Essa funcionalidade faz uso do PHP-ODT (www.php-odt.sourceforge.net/index.php)" +
+    "</div>";
+
     conteudo +="</body></html>";
 
     $("#chtml").val(conteudo);
@@ -152,6 +165,22 @@ function exportAsPHPFichamento(){
     $("#cnome").val(nome.substr(0,40));
     $('#formImportPdf').submit();
 
+};
+
+
+
+
+function exportAsODTFichamento(){
+
+    var jqxhr = $.post( "../phpodt/index.php",{id: $("body").attr("idfic")}, function() {
+
+    })
+        .done(function(data){
+            $("#modal-salvo").modal();
+        })
+        .fail(function() {
+            alert( "error" );
+        })
 }
 
 
@@ -224,7 +253,7 @@ function registarSalvarPDF(){
         }
     };
 
-    $('#bt-salvar-fichamento').click(function () {
+    $('#bt-salvar-fichamento-pdf').click(function () {
         doc.fromHTML($('#conteiner-fichamentos').html(), 15, 15, {
             'width': 170,
             'elementHandlers': specialElementHandlers

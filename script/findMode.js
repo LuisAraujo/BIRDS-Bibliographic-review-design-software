@@ -3,18 +3,52 @@
 //ready
 $(document).ready( function(){
 
+
     $("#buscaFichamento").bind('input propertychange', function(){
-        //0 palavrachave, 1 autor, 2 titulo
-        opc = $('input[name=optradio]:checked', '#form-opcao').val();
+        buscaFichamentos("como");
+    });
 
-        var jquery2 = $.post( "../backend/buscaDadosFichamentoByName_Autor_Titulo.php",{dado: $("#buscaFichamento").val() ,opc: "0"}, function() { })
-            .done(function(data){
-                $("#conteiner-lista-notas").html("Nada foi encontrado! Verifiique a ortografia");
-                data_json = jQuery.parseJSON(data);
-                conteudo = "";
+    $("#bt-menu-princ").click(function(){
+        $("#menu-princ").show( "fast", function(){
+            $("#bt-menu-princ2").show();
+        });
+    });
 
-                for(var i=0; i<data_json.length; i++){
-                    conteudo += "<div style='margin-bottom: 20px'>"+
+    $("#bt-back-page").click(function(){
+        window.location.replace("../");
+    });
+
+    carregamentoInicial();
+
+});
+
+
+function carregamentoInicial(){
+    //pega url
+    url = window.location.href;
+    //tira o parametro via get
+    arr =  url.split("?");
+    //pega segunda pate
+    if(arr.length > 1){
+        $("#buscaFichamento").val(arr[1].replace("%20"," "));
+        buscaFichamentos("igual");
+    }
+
+}
+
+function buscaFichamentos(param){
+
+    //0 palavrachave, 1 autor, 2 titulo
+    opc = $('input[name=optradio]:checked', '#form-opcao').val();
+
+    var jquery2 = $.post( "../backend/buscaDadosFichamentoByName_Autor_Titulo.php",{dado: $("#buscaFichamento").val() ,opc: "0", modo:param.trim()}, function() { })
+        .done(function(data){
+            $("#conteiner-lista-notas").html("Nada foi encontrado! Verifiique a ortografia");
+            data_json = jQuery.parseJSON(data);
+            conteudo = "";
+
+            for(var i=0; i<data_json.length; i++){
+                conteudo += "<div style='margin-bottom: 20px'>"+
                     "<div><b>Artigo:</b>"+data_json[i]["nome"]+"</div>" +
                     "<div><b>Palavra-Chave:</b>"+data_json[i]["palavra"]+" <a href='../editmode/index.html?"+data_json[i]['fic_id']+"'> Veja o Fichamento </a></div>" +
                     "Cite: Word | Latex" +
@@ -25,22 +59,12 @@ $(document).ready( function(){
                     "<td valign='top'  class='conteiner-dados-nota'>"+data_json[i]["ref"]+"</td></tr>"+
                     "</table>" +
                     "</div>";
-               }
+            }
 
-                $("#conteiner-lista-notas").html(conteudo);
+            $("#conteiner-lista-notas").html(conteudo);
 
-            })
-            .fail(function() {
-                alert( "error" );
-            })
-
-
-
-    });
-
-});
-
-
-
-//"<div class='conteiner-dados-nota'>"+data_json[i]["cit"]+"</div>" +
-//"<div class='conteiner-dados-nota'>"+data_json[i]["ref"]+"</div></div>"+
+        })
+        .fail(function() {
+            alert( "error" );
+        })
+}

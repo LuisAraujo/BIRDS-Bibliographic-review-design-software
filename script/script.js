@@ -14,6 +14,14 @@ $(document).ready( function(){
         criarNovoFichamento();
     });
 
+    $("#bt-confing").click(function(){
+        exibePreferencia();
+    });
+
+    $("#bt-sobre-birds").click(function(){
+        $("#modal-sobre").modal();
+    });
+
     var jqxhr = $.post( "backend/buscaTodosFichamentos.php", function() {
     })
         .done(function(data){
@@ -89,7 +97,12 @@ function criaFichamento(){
         })
 }
 
+function exibePreferencia(){
 
+    $('#modal-preferencia').modal();
+
+
+}
 
 
 function abrirPagina(dados){

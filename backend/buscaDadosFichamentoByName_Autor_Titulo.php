@@ -4,11 +4,15 @@ include "conexaoBD_localhost.php";
 $dado = $_POST["dado"];
 $opcao = "0"; //$_POST["opc"];
 $strBuscaFichamento = "";
+$modo = $_POST["modo"];
 $arr_return = array();
 
 if($opcao == "0"){
-    $strBuscaPalavra ="select id, nome from palavrachave where nome like '%".$dado."%'";
-    $res0 = mysql_query($strBuscaPalavra) or die(mysql_error());
+    if($modo == "igual")
+        $strBuscaPalavra ="select id, nome from palavrachave where nome = '".$dado."'";
+    else
+        $strBuscaPalavra ="select id, nome from palavrachave where nome like '%".$dado."%'";
+        $res0 = mysql_query($strBuscaPalavra) or die(mysql_error());
 
     if(mysql_num_rows($res0) == 0){
         echo "sem dados";

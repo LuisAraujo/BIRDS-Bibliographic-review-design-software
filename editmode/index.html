@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>BIDS - Bibliographic Review Design Software</title>
+    <title>BIRDS - Bibliographic Review Design Software</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../style/bootstrap.css" rel="stylesheet">
@@ -19,38 +19,36 @@
     <link href="../style/style.css" rel="stylesheet">
 
     <script src="../script/jquery.js"></script>
-
     <script src="../script/jsPDF/jspdf.debug.js"></script>
-
     <script src="../script/scriptEditMode.js"></script>
 
 
 
 </head>
 
-<body>
+<body idfic="">
 <div id="menu-princ" class="menu">
-    <a id="bt-menu-princ2" class="navbar-brand" href="#" >
+    <a id="bt-menu-princ2" class="navbar-brand">
         <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
         Fichamentos
     </a>
-    <a id="bt-busca-fichamento" class="bt-iten-menu-princ2 navbar-brand" href="#" >
-        <span style="color: #0196D0" class="glyphicon glyphicon-search" aria-hidden="true"></span>
+    <a id="bt-busca-fichamento" class="bt-iten-menu-princ2 navbar-brand" >
+        <span style="color: #0196D0"   class="glyphicon glyphicon-search" aria-hidden="true"></span>
         Buscar
     </a>
 
-    <a id="bt-dados-fichamentos" class="bt-iten-menu-princ2 navbar-brand" href="#" >
-        <span style="color: #20d018" class="glyphicon glyphicon-stats" aria-hidden="true"></span>
-        Gerar Dados
+    <a id="bt-salvar-fichamento-pdf" class="bt-iten-menu-princ2 navbar-brand" >
+        <span style="color: #0196D0"   class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
+        Salvar como PDF
     </a>
 
-    <a id="bt-salvar-fichamento" class="bt-iten-menu-princ2 navbar-brand" href="#" >
-        <span  style="color: #d04a16" class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
-        Salvar (PDF)
+    <a id="bt-salvar-fichamento-odt" class="bt-iten-menu-princ2 navbar-brand" >
+        <span style="color: #0196D0"   class="glyphicon glyphicon-save-file" aria-hidden="true"></span>
+        Salvar como ODT
     </a>
 
-    <a id="bt-back-page" class="bt-iten-menu-princ2 navbar-brand" href="#" >
-        <span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>
+    <a id="bt-back-page" class="bt-iten-menu-princ2 navbar-brand"  >
+        <span style="color: #0196D0"   class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>
         Voltar
     </a>
 
@@ -67,7 +65,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a id="bt-menu-princ" class="navbar-brand" href="#">
+            <a id="bt-menu-princ" class="navbar-brand">
                 <div id="bt-icon-menu-princ" >
                     <span  id="icone-menu" class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
                     <span id="titulo-menu">Fichamentos</span>
@@ -107,6 +105,22 @@
 
 <a href="#"  id="bt-salvar-notas" class="btn btn-primary" role="button">Salvar</a>
 <a href="#" id="bt-criar-linha"  class="btn btn-default" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+</div>
+
+<div class="modal fade" id="modal-salvo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Arquivo Salvo</h4>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success" role="alert">
+                    <a href="#" class="alert-link">O arquivo foi salvo como sucesso, verifique na sua pasta.</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
