@@ -3,13 +3,15 @@ include "conexaoBD_localhost.php";
 $modo = $_POST["modo"];
 $idFichamento = $_POST["idfichamento"];
 
+//inserindo uma nova nota
 if($modo == "novo"){
 
-    $strCriaFichamento = "insert into nota values(null,'','','','$idFichamento')";
+    $strCriaFichamento = "insert into nota values(null,'','','$idFichamento')";
     $res = mysql_query($strCriaFichamento) or die(mysql_error());
     $idNota = mysql_insert_id ();
     echo $idNota;
 
+ //atualizando as notas
 }else if($modo == "atualiza"){
 
     $dados = $_POST["dados"];
@@ -38,7 +40,7 @@ if($modo == "novo"){
         $query3 = mysql_query($strBuscaTag) or die(mysql_error());
         $res3 = mysql_fetch_assoc($query3);
 
-        if(!$res3['total']){
+        if($res3['total'] == 0){
             $strCadastraTag = "insert into tag values('".$idPalavra."','".$idNota."')";
             $res4 = mysql_query($strCadastraTag) or die(mysql_error());
             $idTag = mysql_insert_id ();

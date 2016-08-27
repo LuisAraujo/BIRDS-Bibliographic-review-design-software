@@ -5,7 +5,22 @@ include "../backend/conexaoBD_localhost.php";
 
 $id= $_POST["id"];
 
-$caminho = "C:/Users/fl43/Documents/GitHub/BIRDS-Bibliographic-review-design-software/ODTS/";
+//caminho salvo em "preferências"
+include "../backend/conexaoBD_localhost.php";
+$strSelectLogin = "select localsalvamento as local from  preferencia";
+$res = mysql_query($strSelectLogin) or die(mysql_error());
+$row = mysql_fetch_assoc($res);
+
+$caminho =  $row["local"]."ODTS/";
+
+//verifica se há o diretório
+if (!file_exists($row["local"])) {
+    mkdir($row["local"], 0700);
+}
+
+if (!file_exists($row["local"]."ODTS/")) {
+    mkdir($row["local"]."ODTS/", 0700);
+}
 
 $strBuscaNotas = "select * from nota where fichamento_id = ".$id;
 $res = mysql_query($strBuscaNotas) or die(mysql_error());

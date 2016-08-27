@@ -4,13 +4,28 @@ use Dompdf\Dompdf;
 use Dompdf\Options;
 require_once 'dompdf/autoload.inc.php';
 
-
 //conteudo em html via post
 $html = $_POST["chtml"];
 //nome do artigo via post
 $nome = $_POST["cnome"];
+
 //caminho salvo em "preferências"
-$caminho = "C:/Users/fl43/Documents/GitHub/BIRDS-Bibliographic-review-design-software/PDFS/";
+include "../backend/conexaoBD_localhost.php";
+$strSelectLogin = "select localsalvamento as local from  preferencia";
+$res = mysql_query($strSelectLogin) or die(mysql_error());
+$row = mysql_fetch_assoc($res);
+
+$caminho =  $row["local"]."PDFS/";
+
+//verifica se há o diretório
+if (!file_exists($row["local"])) {
+    mkdir($row["local"], 0700);
+
+}
+
+if (!file_exists($row["local"]."PDFS")) {
+    mkdir($row["local"]."PDFS", 0700);
+}
 
 /********* USANDO DOMPDF ****************/
 $dompdf = new Dompdf();

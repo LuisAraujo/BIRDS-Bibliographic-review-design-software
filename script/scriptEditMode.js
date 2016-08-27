@@ -13,10 +13,15 @@ $(document).ready( function(){
         exportAsODTFichamento();
     });
 
-
-
+    $("#bt-deletar-fichamento").click(function(){
+     $("#modal-deleta-fichamento").modal();
+    });
     $("#bt-criar-linha").click(function(){
         insereNota("novo");
+    });
+
+    $("#bt-confirma-del-fichamento").click(function(){
+        deletarFichamento();
     });
 
     $("#bt-salvar-notas").click(function(){
@@ -29,7 +34,7 @@ $(document).ready( function(){
     })
 
     $("#bt-back-page").click(function(){
-        window.location.replace("../");
+        window.location.replace("../home.html");
     });
 
     $("#bt-menu-princ").click(function(){
@@ -37,14 +42,10 @@ $(document).ready( function(){
     })
 
     $(window).click(function(evt) {
-
         if ((evt.target.id != "bt-menu-princ") && (evt.target.id != "bt-icon-menu-princ") &&
             (evt.target.id !="titulo-menu") && (evt.target.id !="icone-menu"))
             $("#menu-princ").hide("fast");
     });
-
-
-
 });
 
 
@@ -61,16 +62,20 @@ function buscarDadosFichamento(){
      var jquery = $.post( "../backend/buscaDadosArtigosById.php",{id : arr[1]}, function() { })
         .done(function(data){
             data_json = jQuery.parseJSON(data);
-            $("#celula-titulo-fichamento").append(data_json["titulo"]);
-            $("#celula-referencia-artigo").append(data_json["referencia"]);
+            $("#celula-titulo-fichamento").html(data_json["titulo"]);
+            $("#celula-referencia-artigo").html(data_json["referencia"]);
 
              var jquery2 = $.post( "../backend/buscaNotas.php",{idfichamento: idFic}, function() { })
                  .done(function(data){
                      data_json = jQuery.parseJSON(data);
                      console.log(data_json);
+                     $("#conteiner-notas").html("");
                      for(var i=0; i<data_json.length; i++){
-                         $("#conteiner-fichamentos").append(
-                             "<div salvo='true' id="+data_json[i]["id"]+" class='conteiner-nota row-fic row'><div  class='celula-padrao-fichamento cel-txt col-md-4'>"+
+                         $("#conteiner-notas").append(
+                             "<div salvo='true' id="+data_json[i]["id"]+" class='conteiner-nota row-fic row'>" +
+                             "<div  class='celula-padrao-fichamento cel-txt col-md-1'>" +
+                             "<div  class='bt-delete-nota' target="+data_json[i]["id"]+">Deletar</div></div>"+
+                             "<div  class='celula-padrao-fichamento cel-txt col-md-3'>"+
                              "<div id='conteiner-inp-"+data_json[i]["id"]+"'  class='form-group'>" +
                              "<textarea id='inp-"+data_json[i]["id"]+"'  class='input-p-chave form-control' rows='1'></textarea></div> </div>"+
                              "<div  class='celula-padrao-fichamento cel-txt col-md-4'><div class='form-group'>" +
@@ -87,9 +92,11 @@ function buscarDadosFichamento(){
                              buscaPalavraChave($(this).val(), $(this).attr("id") );
                          });
 
+                         $(".bt-delete-nota").click(function(){
+                             deleteNota($(this).attr("target"));
+                         });
 
                      }
-
                  })
                  .fail(function() {
                      alert( "error" );
@@ -103,11 +110,14 @@ function buscarDadosFichamento(){
 
 function insereNota(param){
 
-    var jqxhr = $.post( "../backend/inserirNota.php",{idfichamento: idFic, modo : param}, function() {
+    var jqxhr = $.post( "../backend/inserirNota.php",{idfichamento: idFic, modo : "novo"}, function() {
     })
         .done(function(data){
-              $("#conteiner-fichamentos").append(
-                    "<div salvo='true' id="+data+" class='conteiner-nota row-fic row'><div  class='celula-padrao-fichamento cel-txt col-md-4'>"+
+              $("#conteiner-notas").append(
+                    "<div salvo='true' id="+data+" class='conteiner-nota row-fic row'>" +
+                    "<div  class='celula-padrao-fichamento cel-txt col-md-1'>" +
+                    "<div id="+data+" class='bt-delete-nota'>Deletar</div></div>" +
+                    "<div  class='celula-padrao-fichamento cel-txt col-md-3'>"+
                     "<div id='conteiner-inp-"+data+"' class='form-group'>" +
                     "<textarea id='inp-"+data+"'  class='input-p-chave form-control' rows='1'></textarea></div> </div>"+
                     "<div  class='celula-padrao-fichamento cel-txt col-md-4'><div class='form-group'>" +
@@ -118,6 +128,10 @@ function insereNota(param){
 
             $("#inp-"+data).bind('input propertychange', function(){
                buscaPalavraChave($(this).val(), $(this).attr("id"));
+            });
+
+            $(".bt-delete-nota").click(function(){
+                deleteNota($(this).attr("target"));
             });
 
         })
@@ -140,7 +154,6 @@ function exportAsPHPFichamento(){
 
     //conteudo
     $( ".conteiner-nota" ).each(function() {
-
         id = $(this).attr("id");
         conteudo += "<tr><td  style='font-weight: bold; border: solid 1px #000; max-width: 20%; word-wrap:break-word'>"+$("#inp-"+id).val()+"</td>" +
         "<td  style='font-weight: normal;  border: solid 1px #000; max-width: 40%; word-wrap:break-word'>"+$("#cit-"+id).val()+"</td>" +
@@ -168,7 +181,16 @@ function exportAsPHPFichamento(){
 };
 
 
+function deletarFichamento(){
 
+    var jquery = $.post( "../backend/deletarFichamento.php",{id : idFic}, function() { })
+        .done(function(data){
+            window.location.replace("../");
+        })
+        .fail(function() {
+            alert("Erro ao deltar!");
+        })
+}
 
 function exportAsODTFichamento(){
 
@@ -218,6 +240,7 @@ function salvaNotasFichamento(){
 
     array = [];
 
+    //para cada nota adicione os dados no array
     $(".conteiner-nota").each(function() {
 
         id=$(this).attr("id");
@@ -243,21 +266,16 @@ function salvaNotasFichamento(){
 
 }
 
+function  deleteNota(param){
 
-function registarSalvarPDF(){
-
-    var doc = new jsPDF();
-    var specialElementHandlers = {
-        '#editor': function (element, renderer) {
-            return true;
-        }
-    };
-
-    $('#bt-salvar-fichamento-pdf').click(function () {
-        doc.fromHTML($('#conteiner-fichamentos').html(), 15, 15, {
-            'width': 170,
-            'elementHandlers': specialElementHandlers
+    var jqxhr = $.post( "../backend/deletarNota.php",{id: param}, function() {
+    })
+        .done(function( ){
+            buscarDadosFichamento();
+        })
+        .fail(function() {
+            alert( "error" );
         });
-        doc.save('sample-file.pdf');
-    });
+
+
 }

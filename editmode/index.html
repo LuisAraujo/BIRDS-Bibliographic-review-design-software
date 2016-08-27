@@ -47,6 +47,11 @@
         Salvar como ODT
     </a>
 
+    <a id="bt-deletar-fichamento" class="bt-iten-menu-princ2 navbar-brand" >
+        <span style="color: #0196D0"   class="glyphicon glyphicon-floppy-remove" aria-hidden="true"></span>
+        Deletar Fichamento
+    </a>
+
     <a id="bt-back-page" class="bt-iten-menu-princ2 navbar-brand"  >
         <span style="color: #0196D0"   class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>
         Voltar
@@ -87,8 +92,8 @@
 
         </div>
         <div id="celula-referencia-artigo" class="celula-padrao-fichamento col-md-12">
-
         </div>
+
 
         <div  class="celula-titulo-fichamento celula-padrao-fichamento col-md-4">
             <b>Palavra-Chave</b>
@@ -99,6 +104,9 @@
         <div  class="celula-titulo-fichamento celula-padrao-fichamento col-md-4">
             <b>Reflexão</b>
         </div>
+     </div>
+     <div id="conteiner-notas">
+
      </div>
 
 </div>
@@ -122,6 +130,32 @@
         </div>
     </div>
 </div>
+
+
+
+<!-- DELETA FICHAMENTO-->
+<div class="modal fade" id="modal-deleta-fichamento" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Deletar Fichamento</h4>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-warning" role="alert">
+                    <a href="#" class="alert-link">Tem certeza que deseja deltar este Fichamento?</a>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="button" id="bt-confirma-del-fichamento" class="btn btn-primary">Sim</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

@@ -19,7 +19,7 @@ $(document).ready( function(){
     })
 
     $("#bt-back-page").click(function(){
-        window.location.replace("../");
+        window.location.replace("../home.html");
     });
 
     $(window).click(function(evt) {
@@ -42,7 +42,7 @@ function  buscarDadosPlavras(){
                 str += "<div class='conteiner-palavra'>" +
                        "<span style='color: #0196D0' class='qtd-palavra'>"+data_json[i]['qtd']+"</span> " +
                        "<input id='inp-"+data_json[i]["id"]+"' class='titulo-palavra' disabled='true' value='"+data_json[i]['nome']+"'> |" +
-                       "<span  style='margin-left: 50px;' class='bt bt-ver' word='"+data_json[i]['nome']+"'>VER FICHAMENTOS </span> |" +
+                       "<span  style='margin-left: 50px;' class='bt bt-ver' word='"+data_json[i]['nome']+"'>VER NOTAS</span> |" +
                        "<span mode='renomear' target='"+data_json[i]["id"]+"' style='margin-left: 10px;' class='bt bt-renomear' aria-hidden='true'>RENOMEAR</span>" +
                        "</div> ";
             }
