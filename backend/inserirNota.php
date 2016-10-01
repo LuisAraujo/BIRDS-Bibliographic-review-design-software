@@ -32,6 +32,9 @@ if($modo == "novo"){
 
         $idNota = $dados[$i][0];
 
+        $dados[$i][2] = str_replace("'"," ",$dados[$i][2]);
+        $dados[$i][3] = str_replace("'"," ",$dados[$i][3]);
+
         $strAtualizaNota = "update nota set citacao ='".$dados[$i][2]."',reflexao='".$dados[$i][3]."' where id='".$idNota."'";
         $query2 = mysql_query($strAtualizaNota) or die(mysql_error());
 

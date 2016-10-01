@@ -1,7 +1,9 @@
 <?php
 include "conexaoBD_localhost.php";
 
-$strBuscaArtigo = "select * from artigo where favorito = 0 order by id desc";
+$name = $_POST["name"];
+
+$strBuscaArtigo = "select * from artigo where nome like '%$name%' ";
 $res = mysql_query($strBuscaArtigo) or die(mysql_error());
 $arr_artigo = array();
 

@@ -40,7 +40,6 @@
 
 </div>
 
-
 <!-- Fixed navbar -->
 <nav class="barra navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
@@ -66,33 +65,32 @@
     </div>
 </nav>
 
-<div class="container">
-    <div class="titulo-row">
-        <div class="input-group">
-            <input id="buscaFichamento" style="width: 500px;" type="text" class="form-control" placeholder="O que você procura?" aria-describedby="basic-addon1">
-            <span style="background-color: #6291dd; color: #fff; width: 50px" class="input-group-addon" id="basic-addon1"> <span  class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+<div id="master-conteiner" class="container">
+
+    <div id="conteiner-fichamentos">
+        <div class="titulo-row">
+            <div class="input-group">
+                <input id="buscaFichamento" style="width: 500px;" type="text" class="form-control" placeholder="O que você procura?" aria-describedby="basic-addon1">
+                <span style="background-color: #6291dd; color: #fff; width: 50px" class="input-group-addon" id="basic-addon1"> <span  class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+            </div>
+            <form id="form-opcao" role="form">
+                <div class="radio-inline">
+                    <label><input class="inp-opcao-busca" value="0" type="radio" name="optradio" checked>Palavra-Chave</label>
+                </div>
+                <div class="radio-inline">
+                    <label><input class="inp-opcao-busca" value="1" type="radio" name="optradio">Autores</label>
+                </div>
+                <div class="radio-inline">
+                    <label><input class="inp-opcao-busca" value="2" type="radio" name="optradio">Título</label>
+                </div>
+            </form>
+
         </div>
-        <form id="form-opcao" role="form">
-            <div class="radio-inline">
-                <label><input class="inp-opcao-busca" value="0" type="radio" name="optradio" checked>Palavra-Chave</label>
-            </div>
-            <div class="radio-inline">
-                <label><input class="inp-opcao-busca" value="1" type="radio" name="optradio">Autores</label>
-            </div>
-            <div class="radio-inline">
-                <label><input class="inp-opcao-busca" value="2" type="radio" name="optradio">Título</label>
-            </div>
-        </form>
+        <div style="font-weight: normal" id="conteiner-lista-notas">
+        </div>
 
     </div>
-    <div style="font-weight: normal" id="conteiner-lista-notas">
-
-
-    </div>
-
-
 </div>
-
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="../script/bootstrap.min.js"></script>

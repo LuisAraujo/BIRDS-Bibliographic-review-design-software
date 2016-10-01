@@ -1,22 +1,24 @@
+*{margin:0;}
 .icon-doc{
-    margin-left: 10px;
-    min-height: 150px;
+    margin-left: 20px;
+    min-height: 120px;
     border-radius: 10px;
     color: #797982;
 }
 
-body{
+html, body{
     font-family: "Roboto", "Roboto Bold";
+    height: 99%;
+    overflow:hidden;
 }
 
-.icon-doc img{
-    width: 70%;
-    margin-left: 15%;
+.icon-doc .icon{
+    width: 50%;
+    margin-left: 5%;
     margin-top: 20%;
 }
 .icon-doc:hover{
     cursor: pointer;
-
     color: #57575e;;
 }
 
@@ -29,23 +31,28 @@ body{
     display: block;
     overflow: hidden;
     font-weight: bold;
+    color:#666;
 }
 
 #bt-plus{
-    position: absolute;
+    position: fixed;
     bottom: 30px;
     right: 30px;
+	
+	
 }
 
 #bt-plus:hover{
   cursor: pointer;
 }
 
-.titulo-row{
+.conteiner-row{
     margin-top: 20px;
     font-size: 17px;
     font-weight: bold;
 }
+
+
 /*
 .bt-menu{
     background-color: #efefef;
@@ -66,9 +73,28 @@ body{
 .row-fic{
     margin-top: 0px;
     margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
 
 }
+.col-md-12{
+    width: 98%;
+}
+.col-md-4{
+     width: 32.7%;
+}
 
+.col-md-1{
+    width: 8.2%;
+}
+
+.col-md-3 {
+   width: 24.5%;
+}
+
+.cel-txt{
+    padding: 0px !important;
+}
 .celula-titulo-fichamento {
    text-align: center;
 }
@@ -84,6 +110,20 @@ body{
 
 textarea {
     resize: none;
+    white-space: normal;
+    text-align: justify;
+    -moz-text-align-last: left; /* Firefox 12+ */
+    text-align-last: left;
+}
+
+textarea:focus{
+    border: solid 1 #000 !important;
+    overflow: auto !important;
+    outline: none !important;
+
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
 }
 
 .menu{
@@ -283,4 +323,66 @@ textarea {
     height: 35px;
     width: 40px;
 
+}
+
+#msg-save{
+   font-size: 15px;
+   margin-left: 30px;
+   color: #243061;
+}
+
+
+
+.textDisable{
+    overflow: hidden;
+}
+
+.inp-inativo{
+    color: #ababab;
+}
+
+
+
+.star{
+    width: 20px !important;
+    position: relative;
+    float:left;
+    top:10px;
+    left: calc(50% - 20px);
+}
+
+.noscrolling{
+    overflow-y: hidden;
+    background-color: #fbfbfb;
+}
+
+#show-fic-rec, #show-fic-fav:hover{
+    cursor: pointer;
+}
+
+#conteiner-fichamento, #conteiner-fichamentos{
+    position: absolute;
+    top: 70px;
+    bottom: 0px;
+    left: 30px;
+    right: 0px;
+    overflow: auto;
+    overflow-x: hidden;
+    width: 100%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+
+#master-conteiner{
+    height: 100%;
+    width: 100% !important;
+    overflow: hidden;
+    position: relative;
+
+}
+
+
+#titulo-fic-favoritos, #titulo-fic-recentes, #titulo-fic-encontrados{
+    margin-left: 20px;
 }

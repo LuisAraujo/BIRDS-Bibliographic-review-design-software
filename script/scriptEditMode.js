@@ -46,6 +46,21 @@ $(document).ready( function(){
             (evt.target.id !="titulo-menu") && (evt.target.id !="icone-menu"))
             $("#menu-princ").hide("fast");
     });
+
+    $("#bt-edita-ref").click(function(){
+        $("#modal-edit-ref").modal();
+        buscarReferencia();
+    });
+
+    $(document).bind('keydown', function(e) {
+        if(e.ctrlKey && (e.which == 83)) {
+            salvaNotasFichamento();
+            return false;
+        }
+    });
+
+
+
 });
 
 
@@ -77,11 +92,11 @@ function buscarDadosFichamento(){
                              "<div  class='bt-delete-nota' target="+data_json[i]["id"]+">Deletar</div></div>"+
                              "<div  class='celula-padrao-fichamento cel-txt col-md-3'>"+
                              "<div id='conteiner-inp-"+data_json[i]["id"]+"'  class='form-group'>" +
-                             "<textarea id='inp-"+data_json[i]["id"]+"'  class='input-p-chave form-control' rows='1'></textarea></div> </div>"+
+                             "<textarea id='inp-"+data_json[i]["id"]+"'  class='textDisable input input-p-chave form-control' rows='1'></textarea></div> </div>"+
                              "<div  class='celula-padrao-fichamento cel-txt col-md-4'><div class='form-group'>" +
-                             "<textarea id='cit-"+data_json[i]["id"]+"' class='input-citacao form-control' rows='6' ></textarea>"+
+                             "<textarea id='cit-"+data_json[i]["id"]+"' class='textDisable input input-citacao form-control' rows='6' ></textarea>"+
                              "</div> </div> <div  class='celula-padrao-fichamento cel-txt col-md-4'><div style='padding: 0px; margin:0px'  class='form-group'>"+
-                             "<textarea id='ref-"+data_json[i]["id"]+"' class='input-reflexao form-control' rows='6' ></textarea></div></div>"
+                             "<textarea id='ref-"+data_json[i]["id"]+"' class='textDisable input input-reflexao form-control' rows='6' ></textarea></div></div>"
                          );
 
                          $("#inp-"+data_json[i]["id"]).val(data_json[i]["palavrachave"]);
@@ -96,6 +111,24 @@ function buscarDadosFichamento(){
                              deleteNota($(this).attr("target"));
                          });
 
+                         $(".input").bind('input propertychange', function() {
+                             fichamentoModificado();
+                         });
+
+                         $(document).on('blur', '.input', function () {
+                             $(this).addClass("textDisable");
+                             $('.input').removeClass("inp-inativo");
+                             $("body").removeClass("noscrolling");
+
+                         });
+
+                         $(document).on('focus', '.input', function () {
+                             $(this).removeClass("textDisable");
+                             $('.input').addClass("inp-inativo");
+                             $(this).removeClass("inp-inativo");
+                             $("body").addClass("noscrolling");
+                         });
+
                      }
                  })
                  .fail(function() {
@@ -108,6 +141,33 @@ function buscarDadosFichamento(){
 
 }
 
+function fichamentoModificado(){
+
+    $("#msg-save").text("Arquivo não está salvo...");
+}
+
+function buscarReferencia(){
+    //pega url
+    url = window.location.href;
+    //tira o parametro via get
+    arr =  url.split("?");
+    //pega segunda pate
+    idFic = arr[1];
+
+    $("body").attr("idfic", idFic);
+
+    var jquery = $.post( "../backend/buscaDadosArtigosById.php",{id : arr[1]}, function() { })
+        .done(function(data){
+            data_json = jQuery.parseJSON(data);
+            $("#titulo-artigo").val(data_json["referencia"]);
+        })
+        .fail(function() {
+            alert( "error" );
+        })
+
+}
+
+
 function insereNota(param){
 
     var jqxhr = $.post( "../backend/inserirNota.php",{idfichamento: idFic, modo : "novo"}, function() {
@@ -119,11 +179,11 @@ function insereNota(param){
                     "<div id="+data+" class='bt-delete-nota'>Deletar</div></div>" +
                     "<div  class='celula-padrao-fichamento cel-txt col-md-3'>"+
                     "<div id='conteiner-inp-"+data+"' class='form-group'>" +
-                    "<textarea id='inp-"+data+"'  class='input-p-chave form-control' rows='1'></textarea></div> </div>"+
+                    "<textarea id='inp-"+data+"'  class='textDisable input input-p-chave form-control' rows='1'></textarea></div> </div>"+
                     "<div  class='celula-padrao-fichamento cel-txt col-md-4'><div class='form-group'>" +
-                    "<textarea id='cit-"+data+"' class='input-citacao form-control' rows='6' ></textarea>"+
+                    "<textarea id='cit-"+data+"' class='textDisableinput  input-citacao form-control' rows='6' ></textarea>"+
                     "</div> </div> <div  class='celula-padrao-fichamento cel-txt col-md-4'><div style='padding: 0px; margin:0px'  class='form-group'>"+
-                    "<textarea id='ref-"+data+"' class='input-reflexao form-control' rows='6' ></textarea></div></div>"
+                    "<textarea id='ref-"+data+"' class='textDisable input input-reflexao form-control' rows='6' ></textarea></div></div>"
               );
 
             $("#inp-"+data).bind('input propertychange', function(){
@@ -133,6 +193,12 @@ function insereNota(param){
             $(".bt-delete-nota").click(function(){
                 deleteNota($(this).attr("target"));
             });
+
+            $(".input").bind('input propertychange', function() {
+                fichamentoModificado();
+            });
+
+            salvaNotasFichamento();
 
         })
         .fail(function() {
@@ -165,7 +231,7 @@ function exportAsPHPFichamento(){
     conteudo +="<br><br><div style='text-align: center; color:#999; font-size: 12px'>"+
     "Documento gerado pelo BIRDS (Bibliographic Review Design Software) desenvolvido por Luis Araujo (luisaraujo.github.io)." +
     "<br>" +
-    "Essa funcionalidade faz uso do PHP-ODT (www.php-odt.sourceforge.net/index.php)" +
+    "Essa funcionalidade faz uso do DOM-PDF (https://github.com/dompdf)" +
     "</div>";
 
     conteudo +="</body></html>";
@@ -258,7 +324,7 @@ function salvaNotasFichamento(){
     var jqxhr = $.post( "../backend/inserirNota.php",{idfichamento: idFic, modo: "atualiza", dados: array}, function() {
     })
         .done(function(data){
-            console.log(data);
+            $("#msg-save").text("Arquivo salvo no modo local");
         })
         .fail(function() {
             alert( "error" );

@@ -1,5 +1,5 @@
 <?php
-//header('Content-type: text/html; charset=ISO-8859-1');
+header ('Content-type: text/html; charset=UTF-8');
 
 /*Usando na instalação do BIRDS*/
 include "conexaoBD_localhost.php";
@@ -23,11 +23,6 @@ if(  intval( $row["total"]) > 0){
 }else{
     $strSelectFichamento = "insert into preferencia value(null,'".$usuario."','".$senha."',".$login.",'".$local."',".$alerta.")";
 }
-
-mysql_query("SET NAMES 'utf8'");
-mysql_query('SET character_set_connection=utf8');
-mysql_query('SET character_set_client=utf8');
-mysql_query('SET character_set_results=utf8');
 
 $res = mysql_query($strSelectFichamento) or die(mysql_error());
 

@@ -1,4 +1,7 @@
 <?php
+//FAZER A ATUALIZACAOS
+//REQUER REVER OS AUTORES
+
 include "conexaoBD_localhost.php";
 
 $ref = $_POST["titulo"];
@@ -19,7 +22,6 @@ if(!$row){
   $strCadastraArtigo = "insert into artigo (id, nome, referencia) values( null ,'$titulo','$ref')";
   mysql_query($strCadastraArtigo) or die(mysql_error());
   $idArtigo =  mysql_insert_id ();
-
 }
 
 $arra_aut = explode(";", $autores);

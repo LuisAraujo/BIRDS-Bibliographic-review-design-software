@@ -1,7 +1,9 @@
 $(document).ready( function(){
 
      $("#bt-install").click(function(){
-         realizaIntalacao();
+
+          realizaIntalacao();
+
          $("#c-main").html("Aguarde, estamos criando sua base de dados...");
 
 

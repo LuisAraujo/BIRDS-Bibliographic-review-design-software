@@ -3982,7 +3982,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     outline: 0;
 }
 .navbar-toggle .icon-bar {
-    display: block;
+
     width: 22px;
     height: 2px;
     border-radius: 1px;

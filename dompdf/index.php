@@ -1,7 +1,9 @@
 <?php
+header ('Content-type: text/html; charset=UTF-8');
 
 use Dompdf\Dompdf;
 use Dompdf\Options;
+
 require_once 'dompdf/autoload.inc.php';
 
 //conteudo em html via post
@@ -10,8 +12,10 @@ $html = $_POST["chtml"];
 $nome = $_POST["cnome"];
 
 //caminho salvo em "preferências"
-include "../backend/conexaoBD_localhost.php";
+include "../backend/conexaoBD_localhost2.php";
+
 $strSelectLogin = "select localsalvamento as local from  preferencia";
+
 $res = mysql_query($strSelectLogin) or die(mysql_error());
 $row = mysql_fetch_assoc($res);
 
@@ -19,11 +23,12 @@ $caminho =  $row["local"]."PDFS/";
 
 //verifica se há o diretório
 if (!file_exists($row["local"])) {
-    mkdir($row["local"], 0700);
 
+    mkdir($row["local"], 0700);
 }
 
-if (!file_exists($row["local"]."PDFS")) {
+if (!file_exists($caminho)) {
+    echo "ok";
     mkdir($row["local"]."PDFS", 0700);
 }
 

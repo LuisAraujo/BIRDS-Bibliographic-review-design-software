@@ -2,6 +2,8 @@
 
 include "backend/conexaoBD_localhost.php";
 
+echo $installed;
+
 if($installed == 0){
     header("Location: install/index.php");
 }else{
@@ -12,7 +14,7 @@ if($installed == 0){
     if( intval($row["login"]) == 1){
        header("Location: login.html");
     }else{
-       header("Location: home.html");
+       header("Location: pagina_inicial.html");
     }
 }
 ?>

@@ -2,13 +2,15 @@
 
 //ready
 $(document).ready( function(){
+    carregamentoInicial();
+
 
     $("#buscaFichamento").bind('input propertychange', function(){
 
       //  if($("#login-preferencia:checked").val() == "")
       //  else if($("#login-preferencia:checked").val() == "")
       //  else if($("#login-preferencia:checked").val() == "")
-        buscaFichamentos("como");
+       buscaFichamentos("como");
     });
 
     $("#bt-menu-princ").click(function(){
@@ -21,7 +23,6 @@ $(document).ready( function(){
         window.location.replace("../home.html");
     });
 
-    carregamentoInicial();
 
 
     $(".inp-opcao-busca").on('change', function() {
@@ -38,7 +39,10 @@ function carregamentoInicial(){
     arr =  url.split("?");
     //pega segunda pate
     if(arr.length > 1){
-        $("#buscaFichamento").val(arr[1].replace("%20"," "));
+        arr2 = arr[1].toString().replace(new RegExp('%20', 'g'), " ");
+        arr2 = decodeURI(arr2);
+
+        $("#buscaFichamento").val(arr2);
         buscaFichamentos("igual");
     }
 
@@ -49,6 +53,7 @@ function buscaFichamentos(param){
     //0 palavrachave, 1 autor, 2 titulo
     opc = $('input[name=optradio]:checked', '#form-opcao').val();
     dado = $("#buscaFichamento").val().trim();
+
 
     var jquery2 = $.post( "../backend/buscaDadosNotasByName.php",{dado: dado ,opc: opc, modo: param.trim()}, function() { })
         .done(function(data){

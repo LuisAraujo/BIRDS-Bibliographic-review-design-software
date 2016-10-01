@@ -73,9 +73,7 @@ function  buscarDadosPlavras(){
                          })
                          .fail(function() {
                             alert( "error" );
-                         });
-
-
+                         })
                 }
             });
         })

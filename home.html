@@ -33,7 +33,7 @@
 
     <a id="bt-busca-fichamento" class="bt-iten-menu-princ2 navbar-brand" href="#" >
         <span style="color: #0196D0" class="glyphicon glyphicon-search" aria-hidden="true"></span>
-        Buscar
+        Buscar Citação
     </a>
 
     <a id="bt-ger-palavras" class="bt-iten-menu-princ2 navbar-brand" href="#" >
@@ -65,6 +65,7 @@
 </div>
 
 
+
 <!-- Fixed navbar -->
 <nav class="barra navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
@@ -76,10 +77,10 @@
                 <span class="icon-bar"></span>
             </button>
             <a id="bt-menu-princ" class="navbar-brand" href="#">
-                    <div id="bt-icon-menu-princ" >
+                <div id="bt-icon-menu-princ" >
                     <span  id="icone-menu" class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
                     <span id="titulo-menu">Fichamentos</span>
-                    </div>
+                </div>
             </a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
@@ -91,140 +92,159 @@
 </nav>
 
 
+<!-- MODAL NOVO ARQUIVO-->
+<div class="modal fade" id="modal-novo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Novo Fichamento</h4>
+            </div>
+            <div class="modal-body">
 
-
-<div class="container">
-    <!-- MODAL NOVO ARQUIVO-->
-    <div class="modal fade" id="modal-novo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Novo Fichamento</h4>
-                </div>
-                <div class="modal-body">
-
-                    <div class="input-group">
+                <div class="input-group">
                         <span class="input-group-addon" id="titulo-fichamento">
                             <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
                         </span>
-                        <input type="text" class="form-control" id="titulo-artigo" placeholder="Referência Completa do Artigo" aria-describedby="basic-addon1">
-                    </div>
+                    <input type="text" class="form-control" id="titulo-artigo" placeholder="Referência Completa do Artigo" aria-describedby="basic-addon1">
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                    <button type="button" id="bt-criar-novo" class="btn btn-primary">Criar</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="button" id="bt-criar-novo" class="btn btn-primary">Criar</button>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- MODAL PREFERENCIA-->
-    <div class="modal fade" id="modal-preferencia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" >Preferências</h4>
-                </div>
-                <div class="modal-body">
-                    <h5> Segurança </h5>
-                    <!-- Usuario -->
-                    <div class="input-group">
+<!-- MODAL PREFERENCIA-->
+<div class="modal fade" id="modal-preferencia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" >Preferências</h4>
+            </div>
+            <div class="modal-body">
+                <h5> Segurança </h5>
+                <!-- Usuario -->
+                <div class="input-group">
                         <span class="input-group-addon" >
                             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                         </span>
-                        <input id="usuario-preferencia" type="text" class="form-control"  placeholder="Usuario" aria-describedby="basic-addon1">
-                    </div>
-                    <br>
-                    <!-- Senha -->
-                    <div class="input-group">
+                    <input id="usuario-preferencia" type="text" class="form-control"  placeholder="Usuario" aria-describedby="basic-addon1">
+                </div>
+                <br>
+                <!-- Senha -->
+                <div class="input-group">
                         <span class="input-group-addon" >
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </span>
-                        <input id="senha-preferencia" type="password" class="form-control"  placeholder="Senha" aria-describedby="basic-addon1">
-                    </div>
-                    <br>
+                    <input id="senha-preferencia" type="password" class="form-control"  placeholder="Senha" aria-describedby="basic-addon1">
+                </div>
+                <br>
 
-                    <div class="checkbox">
-                        <label><input id="login-preferencia" type="checkbox" value="">Exigir Login</label>
-                    </div>
+                <div class="checkbox">
+                    <label><input id="login-preferencia" type="checkbox" value="">Exigir Login</label>
+                </div>
 
-                    <h5> Salvamento </h5>
-                    <!-- Salvar arquivos -->
-                    <div class="input-group">
+                <h5> Salvamento </h5>
+                <!-- Salvar arquivos -->
+                <div class="input-group">
                         <span class="input-group-addon" >
                             <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
                         </span>
-                        <input id="salvar-preferencia"  type="text" class="form-control"  placeholder="Caminho para Salvar os Arquivos" aria-describedby="basic-addon1">
-                    </div>
+                    <input id="salvar-preferencia"  type="text" class="form-control"  placeholder="Caminho para Salvar os Arquivos" aria-describedby="basic-addon1">
+                </div>
 
-                    <br>
+                <br>
 
-                    <!-- Backup -->
-                    <h5> Aviso </h5>
-                    <div class="input-group">
+                <!-- Backup -->
+                <h5> Aviso </h5>
+                <div class="input-group">
                         <span class="input-group-addon" >
                             <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
                         </span>
-                        <input id="avisobackup-preferencia" type="text" class="form-control"  placeholder="Periodo para Aviso de Backup (Em dias)" aria-describedby="basic-addon1">
-                    </div>
+                    <input id="avisobackup-preferencia" type="text" class="form-control"  placeholder="Periodo para Aviso de Backup (Em dias)" aria-describedby="basic-addon1">
+                </div>
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                    <button type="button" id="bt-salvar-pref" class="btn btn-primary">Salvar</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="button" id="bt-salvar-pref" class="btn btn-primary">Salvar</button>
             </div>
         </div>
     </div>
+</div>
 
 
-    <!-- MODAL NOVO ARQUIVO-->
-    <div class="modal fade" id="modal-sobre" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Sobre o BIRDS</h4>
-                </div>
-                <div class="modal-body">
+<!-- MODAL SOBRE-->
+<div class="modal fade" id="modal-sobre" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Sobre o BIRDS</h4>
+            </div>
+            <div class="modal-body">
 
-                  O <b>BIRDS</b> (versão alfa) é um projeto desenvolvido em tecnologia web por <a target="_blank" href="http://luisaraujo.github.io"> <i>Luis Araujo</i> </a>. Este projeto visa oferecer suporte a
-                  pesquisadores quanto a revisões bibliográficas.BIRDS está sob licença
-                 <a target="_blank" href="https://br.creativecommons.org/licencas/">CC BY-SA</a>.
+                O <b>BIRDS</b> (versão alfa) é um projeto desenvolvido em tecnologia web por <a target="_blank" href="http://luisaraujo.github.io"> <i>Luis Araujo</i> </a>. Este projeto visa oferecer suporte a
+                pesquisadores quanto a revisões bibliográficas.BIRDS está sob licença
+                <a target="_blank" href="https://br.creativecommons.org/licencas/">CC BY-SA</a>.
 
-                </div>
-                <div class="modal-footer">
+            </div>
+            <div class="modal-footer">
 
-                </div>
             </div>
         </div>
-    </div>
-
-
-    <div class="titulo-row">
-       Fichamentos Recentes
-    </div>
-
-    <div id="icon-fic" class="row">
-
     </div>
 </div>
 
 
 
+<div id="master-conteiner" class="container">
+
+    <div id="conteiner-fichamento">
+        <div class="input-group">
+            <input id="buscaFichamento" style="width: 600px" type="text" class="form-control" placeholder="Digite o nome do Fichamento" aria-describedby="basic-addon1">
+            <span style="background-color: #6291dd; color: #fff; width: 50px" class="input-group-addon" id="basic-addon1"> <span  class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+        </div>
+
+        <div id="titulo-fic-favoritos"  class="conteiner-row">
+            <span class="titulo-row">
+                <span id="show-fic-fav" style="display:none" class=" glyphicon glyphicon-plus" aria-hidden="true"></span>
+                <span id="hide-fic-fav" class=" glyphicon glyphicon-minus" aria-hidden="true"></span>
+                Favotivos
+             </span>
+            <div id="icon-fic-fav" class="row">
+            </div>
+        </div>
+
+        <div id="titulo-fic-recentes"  class="conteiner-row">
+            <span class="titulo-row">
+                <span id="show-fic-rec" style="display:none" class=" glyphicon glyphicon-plus" aria-hidden="true"></span>
+                <span id="hide-fic-rec" class=" glyphicon glyphicon-minus" aria-hidden="true"></span>
+                Fichamentos Recentes
+            </span>
+            <div id="icon-fic-rec" class="row">
+            </div>
+        </div>
+
+       <div id="titulo-fic-encontrados" class="conteiner-row">
+            <span class="titulo-row">
+                   Fichamentos Encontrados
+            </span>
+           <div id="icon-fic-enc" class="row">
+           </div>
+       </div>
+
+       <div id="bt-plus">
+           <img src="img/plus.png">
+       </div>
+    </div>
 
 
-
-
-<div id="bt-plus">
-    <img src="img/plus.png">
 </div>
-
-
-
 <script src="script/bootstrap.min.js"></script>
-
 </body>
 </html>

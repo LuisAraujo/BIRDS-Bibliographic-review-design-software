@@ -27,14 +27,15 @@
 </head>
 
 <body idfic="">
+
 <div id="menu-princ" class="menu">
     <a id="bt-menu-princ2" class="navbar-brand">
         <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
         Fichamentos
     </a>
-    <a id="bt-busca-fichamento" class="bt-iten-menu-princ2 navbar-brand" >
+    <a id="bt-edita-ref" class="bt-iten-menu-princ2 navbar-brand" >
         <span style="color: #0196D0"   class="glyphicon glyphicon-search" aria-hidden="true"></span>
-        Buscar
+        Editar Referência
     </a>
 
     <a id="bt-salvar-fichamento-pdf" class="bt-iten-menu-princ2 navbar-brand" >
@@ -59,7 +60,6 @@
 
 </div>
 
-
 <!-- Fixed navbar -->
 <nav class="barra navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
@@ -74,6 +74,7 @@
                 <div id="bt-icon-menu-princ" >
                     <span  id="icone-menu" class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
                     <span id="titulo-menu">Fichamentos</span>
+                    <span id="msg-save">Arquivo salvo no modo local</span>
                 </div>
             </a>
         </div>
@@ -86,34 +87,6 @@
 </nav>
 
 
-<div id="conteiner-fichamentos" style="margin-top: 10px" class="container">
-    <div class="row-fic  row">
-        <div id="celula-titulo-fichamento" class="celula-padrao-fichamento col-md-12">
-
-        </div>
-        <div id="celula-referencia-artigo" class="celula-padrao-fichamento col-md-12">
-        </div>
-
-
-        <div  class="celula-titulo-fichamento celula-padrao-fichamento col-md-4">
-            <b>Palavra-Chave</b>
-        </div>
-        <div  class="celula-titulo-fichamento celula-padrao-fichamento col-md-4">
-            <b>Citação</b>
-        </div>
-        <div  class="celula-titulo-fichamento celula-padrao-fichamento col-md-4">
-            <b>Reflexão</b>
-        </div>
-     </div>
-     <div id="conteiner-notas">
-
-     </div>
-
-</div>
-
-<a href="#"  id="bt-salvar-notas" class="btn btn-primary" role="button">Salvar</a>
-<a href="#" id="bt-criar-linha"  class="btn btn-default" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
-</div>
 
 <div class="modal fade" id="modal-salvo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -155,8 +128,62 @@
     </div>
 </div>
 
+<!-- MODAL NOVO ARQUIVO-->
+<div class="modal fade" id="modal-edit-ref" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" >Editar Referência</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="input-group">
+                        <span class="input-group-addon" id="titulo-fichamento">
+                            <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+                        </span>
+                    <input type="text" class="form-control" id="titulo-artigo" placeholder="Referência Completa do Artigo" aria-describedby="basic-addon1">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="button" id="bt-criar-novo" class="btn btn-primary">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
+<div id="master-conteiner" class="container">
+
+    <div id="conteiner-fichamentos">
+        <div class="row-fic row">
+            <div id="celula-titulo-fichamento" class="celula-padrao-fichamento col-md-12">
+
+            </div>
+
+            <div id="celula-referencia-artigo" class="celula-padrao-fichamento col-md-12">
+            </div>
+
+
+            <div  class="celula-titulo-fichamento celula-padrao-fichamento col-md-4">
+                <b>Palavra-Chave</b>
+            </div>
+            <div  class="celula-titulo-fichamento celula-padrao-fichamento col-md-4">
+                <b>Citação</b>
+            </div>
+            <div  class="celula-titulo-fichamento celula-padrao-fichamento col-md-4">
+                <b>Reflexão</b>
+            </div>
+        </div>
+        <div id="conteiner-notas">
+
+        </div>
+
+        <a id="bt-salvar-notas" class="btn btn-primary" role="button">Salvar</a>
+        <a  id="bt-criar-linha"  class="btn btn-default" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+    </div>
+</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="../script/bootstrap.min.js"></script>

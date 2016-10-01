@@ -1,6 +1,6 @@
 <?php
 
-if (!file_exists("../backend/conexaoBD_localhost.php"))
+if (!file_exists("../backend/conexao_localhost.php"))
 echo
 "<!DOCTYPE html>
 <html>

@@ -1,7 +1,7 @@
 <?php
 include "conexaoBD_localhost.php";
 
-$strBuscaArtigo = "select * from artigo where favorito = 0 order by id desc";
+$strBuscaArtigo = "select * from artigo where favorito = 1 order by id desc";
 $res = mysql_query($strBuscaArtigo) or die(mysql_error());
 $arr_artigo = array();
 

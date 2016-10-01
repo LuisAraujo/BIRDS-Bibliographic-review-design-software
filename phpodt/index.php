@@ -1,12 +1,11 @@
 <?php
 
 include '/phpodt-0.3.3/phpodt.php';
-include "../backend/conexaoBD_localhost.php";
+//caminho salvo em "preferências"
+include "../backend/conexaoBD_localhost2.php";
 
 $id= $_POST["id"];
 
-//caminho salvo em "preferências"
-include "../backend/conexaoBD_localhost.php";
 $strSelectLogin = "select localsalvamento as local from  preferencia";
 $res = mysql_query($strSelectLogin) or die(mysql_error());
 $row = mysql_fetch_assoc($res);
@@ -19,7 +18,7 @@ if (!file_exists($row["local"])) {
 }
 
 if (!file_exists($row["local"]."ODTS/")) {
-    mkdir($row["local"]."ODTS/", 0700);
+    mkdir($row["local"]."ODTS", 0700);
 }
 
 $strBuscaNotas = "select * from nota where fichamento_id = ".$id;
@@ -87,6 +86,31 @@ $textStyle2->setColor('#999999');
 $p3 = new Paragraph();
 $p4 = new Paragraph($pStyle);
 $p4->addText("Documento gerado pelo BIRDS (Bibliographic Review Design Software)desenvolvido por Luis Araujo (luisaraujo.github.io). Essa funcionalidade faz uso do PHP-ODT (www.php-odt.sourceforge.net/index.php)", $textStyle2);
+
+//Replece letras com acentos
+$arrC = ["ç", "Ç"];
+$nome = str_replace($arrC, "c", $nome);
+
+$arrC = ["ã", "Ã"];
+$nome = str_replace($arrC, "a", $nome);
+$arrC = ["á", "Á"];
+$nome = str_replace($arrC, "a", $nome);
+$arrC = ["à", "À"];
+$nome = str_replace($arrC, "a", $nome);
+$arrC = ["â", "Â"];
+$nome = str_replace($arrC, "a", $nome);
+
+$arrC = ["õ", "Õ"];
+$nome = str_replace($arrC, "o", $nome);
+$arrC = ["ó", "Ó"];
+$nome = str_replace($arrC, "o", $nome);
+$arrC = ["ô", "Ô"];
+$nome = str_replace($arrC, "o", $nome);
+
+$arrC = ["é", "É"];
+$nome = str_replace($arrC, "e", $nome);
+$arrC = ["ê", "Ê"];
+$nome = str_replace($arrC, "e", $nome);
 
 
 $file_to_save = $caminho."".$nome.'.odt';
