@@ -2,7 +2,7 @@ $(document).ready( function(){
     //a();
     buscarExibirFichamentos();
     buscarExibirFichamentosFavoritos();
-
+    b();
     $("#bt-fullscreen").click(function(){
         fullScreen();
     });
@@ -124,31 +124,57 @@ function abrirNovoFichamento(){
 
 
 function criarNovoFichamento(){
-    if(verificaDadosNovoFichamento())
-        criaFichamento();
+    r = verificaDadosNovoFichamento();
+    if(r!=0)
+        criaFichamento(r);
 
 }
 
 function verificaDadosNovoFichamento(){
 
-    if ( ($("#titulo-artigo").val() != "") && ($("#titulo-autores").val() != "")) {
-        return true;
+    if (($("#ref-artigo-abnt").val() != "") && ($("#ref-artigo-bibtex").val() == "")){
+        return 1;
+    }else if (($("#ref-artigo-bibtex").val() != "") && ($("#ref-artigo-abnt").val() == "")) {
+        return 2;
     }
-    return false;
+    return 0;
 }
 
 
-function criaFichamento(){
 
-    //inserir no banco
-    t = $("#titulo-artigo").val();
-    //a = $("#autores-artigo").val();
+function b(){
+return;
+    b ="@inproceedings{uludag2011implementing,title={Implementing IT0/CS0 with scratch, app inventor forandroid, and lego mindstorms},"+
+       "author={Uludag, Suleyman and Karakus, Murat and Turner, Stephen W}, booktitle={Proceedings of the 2011 conference on Information technology education},"+
+       "pages={183--190}, year={2011}, organization={ACM}}";
 
-    var jqxhr = $.post( "backend/inserirDados.php",{ titulo :t}, function() {
+    var jqxhr = $.post( "backend/bibtex.php",{ b:b}, function() {
 
     })
         .done(function(data){
-            abrirPagina(data);
+           console.log(data)
+        })
+        .fail(function() {
+            alert( "error" );
+        })
+}
+
+
+function criaFichamento(param){
+    if(param==1){
+       modo ="abnt";
+       t = $("#ref-artigo-abnt").val();
+    }else if(param == 2){
+      modo = "bibtex";
+        t = $("#ref-artigo-bibtex").val();
+    }
+
+    var jqxhr = $.post( "backend/inserirDados.php",{ titulo :t, modo: modo}, function() {
+
+    })
+        .done(function(data){
+
+           abrirPagina(data);
         })
         .fail(function() {
             alert( "error" );

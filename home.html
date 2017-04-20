@@ -100,19 +100,33 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">Novo Fichamento</h4>
             </div>
-            <div class="modal-body">
 
+            <div class="modal-body">
+                <span>Referência em ABNT 6023</span>
                 <div class="input-group">
                         <span class="input-group-addon" id="titulo-fichamento">
                             <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
                         </span>
-                    <input type="text" class="form-control" id="titulo-artigo" placeholder="Referência Completa do Artigo" aria-describedby="basic-addon1">
+                    <input type="text" class="form-control" id="ref-artigo-abnt" placeholder="Referência Completa do Artigo" aria-describedby="basic-addon1">
                 </div>
+
+                <div style="text-align: center; margin-top: 10px"> ou</div>
+
+                <span>Referência em BibTex</span>
+                <div class="input-group">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+                        </span>
+                    <input type="text" class="form-control" id="ref-artigo-bibtex" placeholder="Referência Completa do Artigo" aria-describedby="basic-addon1">
+                </div>
+
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                 <button type="button" id="bt-criar-novo" class="btn btn-primary">Criar</button>
             </div>
+
         </div>
     </div>
 </div>

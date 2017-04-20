@@ -1,8 +1,49 @@
 //guardar o id do Fichamento atual
 var idFic;
-
+var textSelected;
 //ready
 $(document).ready( function(){
+
+    //remove o clique do botão diteiro
+    $(document).on("contextmenu",function(e){
+        e.preventDefault();
+
+        if(e.target.nodeName == "TEXTAREA" || e.target.nodeName == "INPUT"){
+
+            h = "<div id='menu-float' style='top: "+ e.clientY+"px; left: "+ e.clientX+"px; '>" +
+                "<div class='bt-menu-float'>" +
+                "<span class='glyphicon glyphicon-book' aria-hidden='true'></span>" +
+                "<span id='bt-traduzir-texto'><a href='https://translate.google.com.br/#en/pt/"+window.getSelection().toString()+"' target='_blank'>Traduzir trecho</a></span>" +
+                "</div>";
+            if($("#conteiner-fichamentos").attr("bibtex") != ""){
+                h += "<div id='bt-citar-bibtex-dir' class='bt-menu-float'>" +
+                "<span class='glyphicon glyphicon-book' aria-hidden='true'></span>" +
+                "<span >Citação direta Latex</span>" +
+                "</div>";
+
+                h += "<div id='bt-citar-bibtex-ind' class='bt-menu-float'>" +
+                    "<span class='glyphicon glyphicon-book' aria-hidden='true'></span>" +
+                    "<span >Citação indireta Latex</span>" +
+                    "</div>";
+            }
+
+            h +="</div>";
+
+            $('body').append(h);
+
+            $("#conteiner-fichamentos").attr("bibtex", data_json["bibtex"]);
+            $("#bt-citar-bibtex-dir").click(function(){
+                copiaAreaTransferencia("\\cite{"+$("#conteiner-fichamentos").attr("bibtex")+"}")
+            });
+
+            $("#bt-citar-bibtex-ind").click(function(){
+                copiaAreaTransferencia("\\citeonline{"+$("#conteiner-fichamentos").attr("bibtex")+"}")
+            });
+
+         }
+
+
+       });
 
     buscarDadosFichamento();
 
@@ -45,6 +86,10 @@ $(document).ready( function(){
         if ((evt.target.id != "bt-menu-princ") && (evt.target.id != "bt-icon-menu-princ") &&
             (evt.target.id !="titulo-menu") && (evt.target.id !="icone-menu"))
             $("#menu-princ").hide("fast");
+
+        //if($("#menu-float").left > 1){
+            $("#menu-float").remove();
+        //}
     });
 
     $("#bt-edita-ref").click(function(){
@@ -64,6 +109,46 @@ $(document).ready( function(){
 });
 
 
+function copiaAreaTransferencia(param){
+
+    var success   = true,
+        range     = document.createRange(),
+        selection;
+
+    // For IE.
+    if (window.clipboardData) {
+        window.clipboardData.setData("Text",  param );
+    } else {
+        // Create a temporary element off screen.
+        var tmpElem = $('<div>');
+        tmpElem.css({
+            position: "absolute",
+            left:     "-1000px",
+            top:      "-1000px"
+        });
+        // Add the input value to the temp element.
+        tmpElem.text(param);
+        $("body").append(tmpElem);
+        // Select temp element.
+        range.selectNodeContents(tmpElem.get(0));
+        selection = window.getSelection ();
+        selection.removeAllRanges ();
+        selection.addRange (range);
+        // Lets copy.
+        try {
+            success = document.execCommand ("copy", false, null);
+        }
+        catch (e) {
+            copyToClipboardFF(input.val());
+        }
+        if (success) {
+            $("#modal-citacao").modal();
+            // remove temp element.
+            tmpElem.remove();
+        }
+    }
+
+}
 function buscarDadosFichamento(){
     //pega url
     url = window.location.href;
@@ -78,7 +163,9 @@ function buscarDadosFichamento(){
         .done(function(data){
             data_json = jQuery.parseJSON(data);
             $("#celula-titulo-fichamento").html(data_json["titulo"]);
+            $("#conteiner-fichamentos").attr("bibtex", data_json["bibtex"]);
             $("#celula-referencia-artigo").html(data_json["referencia"]);
+
 
              var jquery2 = $.post( "../backend/buscaNotas.php",{idfichamento: idFic}, function() { })
                  .done(function(data){
@@ -92,7 +179,7 @@ function buscarDadosFichamento(){
                              "<div  class='bt-delete-nota' target="+data_json[i]["id"]+">Deletar</div></div>"+
                              "<div  class='celula-padrao-fichamento cel-txt col-md-3'>"+
                              "<div id='conteiner-inp-"+data_json[i]["id"]+"'  class='form-group'>" +
-                             "<textarea id='inp-"+data_json[i]["id"]+"'  class='textDisable input input-p-chave form-control' rows='1'></textarea></div> </div>"+
+                             "<textarea id='inp-"+data_json[i]["id"]+"'class='textDisable input input-p-chave form-control' rows='1'></textarea></div> </div>"+
                              "<div  class='celula-padrao-fichamento cel-txt col-md-4'><div class='form-group'>" +
                              "<textarea id='cit-"+data_json[i]["id"]+"' class='textDisable input input-citacao form-control' rows='6' ></textarea>"+
                              "</div> </div> <div  class='celula-padrao-fichamento cel-txt col-md-4'><div style='padding: 0px; margin:0px'  class='form-group'>"+
@@ -179,11 +266,11 @@ function insereNota(param){
                     "<div id="+data+" class='bt-delete-nota'>Deletar</div></div>" +
                     "<div  class='celula-padrao-fichamento cel-txt col-md-3'>"+
                     "<div id='conteiner-inp-"+data+"' class='form-group'>" +
-                    "<textarea id='inp-"+data+"'  class='textDisable input input-p-chave form-control' rows='1'></textarea></div> </div>"+
+                    "<textarea  spellcheck='false' id='inp-"+data+"'  class='textDisable input input-p-chave form-control' rows='1'></textarea></div> </div>"+
                     "<div  class='celula-padrao-fichamento cel-txt col-md-4'><div class='form-group'>" +
-                    "<textarea id='cit-"+data+"' class='textDisableinput  input-citacao form-control' rows='6' ></textarea>"+
+                    "<textarea spellcheck='false' id='cit-"+data+"' class='textDisableinput  input input-citacao form-control' rows='6' ></textarea>"+
                     "</div> </div> <div  class='celula-padrao-fichamento cel-txt col-md-4'><div style='padding: 0px; margin:0px'  class='form-group'>"+
-                    "<textarea id='ref-"+data+"' class='textDisable input input-reflexao form-control' rows='6' ></textarea></div></div>"
+                    "<textarea spellcheck='false' id='ref-"+data+"' class='textDisable input input-reflexao form-control' rows='6' ></textarea></div></div>"
               );
 
             $("#inp-"+data).bind('input propertychange', function(){

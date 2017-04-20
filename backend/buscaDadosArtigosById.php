@@ -11,7 +11,7 @@ if(mysql_num_rows($res) == 0){
 }else{
     $row = mysql_fetch_assoc($res);
 
-    $json = '{"titulo": "'.$row['nome']. '", "referencia":"'.$row["referencia"].'"}';
+    $json = '{"titulo": "'.$row['nome']. '", "referencia":"'.$row["referencia"].'", "bibtex":"'.$row["bibtex"].'"}';
 
 }
 

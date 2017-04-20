@@ -380,9 +380,43 @@ textarea:focus{
     overflow: hidden;
     position: relative;
 
+
 }
 
 
 #titulo-fic-favoritos, #titulo-fic-recentes, #titulo-fic-encontrados{
     margin-left: 20px;
+
 }
+
+#menu-float{
+    width: 200px;
+    height: 200px;
+    background-color: #fff;
+    position: fixed;
+
+    color: #636363;
+    border: solid 1px #939393; z-index: 999
+}
+
+.bt-menu-float{
+    padding: 10px;
+}
+
+.bt-menu-float:hover{
+    background-color: #dbebff;
+}
+
+#bt-traduzir-texto{
+    margin-left: 5px;
+}
+
+#menu-float a{
+    text-decoration: none;
+    color: #636363;
+}
+
+#menu-float a:hover{
+    text-decoration: none;
+}
+

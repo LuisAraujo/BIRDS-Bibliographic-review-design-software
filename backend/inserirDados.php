@@ -2,12 +2,64 @@
 include "conexaoBD_localhost.php";
 
 $ref = $_POST["titulo"];
+$modo = $_POST["modo"];
 
-$ref_ex =  explode(". ", $ref);
+$ref_ex= null;
+$autores="";
+$titulo="";
+$arra_aut = null;
+$arraIDPesquisadores = array();
+$chamada ="";
 
-$autores = $ref_ex[0];
+if($modo == "abnt"){
+    $ref_ex =  explode(". ", $ref);
+    $autores = $ref_ex[0];
+    $arra_aut = explode(";", $autores);
+    $titulo = strtoupper($ref_ex[1]);
 
-$titulo = strtoupper($ref_ex[1]);
+}else if($modo == "bibtex"){
+
+    $autor = "";
+
+    $ref = trim(preg_replace('/\s\s+/', ' ', $ref));
+    $bib_ex =  explode("{", $ref);
+
+    $chamada = explode(",", $bib_ex[1])[0];
+
+    for($i= 0; $i < count($bib_ex); $i++){
+
+        if($titulo == ""){
+            $temp = explode(",", $bib_ex[$i]);
+            $t = str_replace(' ','', $temp[count($temp)-1]);
+            $t = str_replace('=', '',$t);
+
+            if($t == 'title'){
+                $titulo = strtoupper(explode("}", $bib_ex[$i+1])[0]);
+            }
+        }
+        if($autor == ""){
+            $temp = explode(",", $bib_ex[$i]);
+
+            $t = str_replace(' ','', $temp[count($temp)-1]);
+            $t = str_replace('=', '',$t);
+
+            if($t == 'author'){
+                $autor = explode("}", $bib_ex[$i+1])[0];
+            }
+        }
+
+    }
+
+    $arra_aut = explode("and", $autor);
+    $ref = "";
+    for($i= 0; $i < count($arra_aut); $i++){
+        $ref .= $arra_aut[$i];
+    }
+
+    $ref .= ". ".$titulo;
+
+}
+
 
 //buscar artigo
 $strBuscaArtigo = "select id from artigo where referencia ='$ref'";
@@ -15,15 +67,14 @@ $strBuscaArtigo = "select id from artigo where referencia ='$ref'";
 $idArtigo = mysql_query($strBuscaArtigo) or die(mysql_error());
 
 $row = mysql_fetch_assoc($idArtigo);
+
 if(!$row){
-  $strCadastraArtigo = "insert into artigo (id, nome, referencia) values( null ,'$titulo','$ref')";
+  $strCadastraArtigo = "insert into artigo (id, nome, referencia, favorito, bibtex) values( null ,'$titulo','$ref', 0, '$chamada')";
   mysql_query($strCadastraArtigo) or die(mysql_error());
   $idArtigo =  mysql_insert_id ();
 
 }
 
-$arra_aut = explode(";", $autores);
-$arraIDPesquisadores = array();
 
 foreach ($arra_aut as $ar){
     $arra_nome = explode(",", $ar);

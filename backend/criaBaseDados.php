@@ -20,7 +20,7 @@ if($conn->query($slq_basedados)){
 }
 
 //TABELA artigo
-$slq_basedados = "CREATE TABLE IF NOT EXISTS BIRDS.artigo (id INT NOT NULL AUTO_INCREMENT,nome VARCHAR(300) NULL, referencia VARCHAR(500) NULL, favorito BOOLEAN NULL DEFAULT FALSE, PRIMARY KEY (id))ENGINE = InnoDB;";
+$slq_basedados = "CREATE TABLE IF NOT EXISTS BIRDS.artigo (id INT NOT NULL AUTO_INCREMENT,nome VARCHAR(300) NULL, referencia VARCHAR(500) NULL, favorito BOOLEAN NULL DEFAULT FALSE, bibtex VARCHAR(500) NULL, PRIMARY KEY (id))ENGINE = InnoDB;";
 $conn->query($slq_basedados);
 
 //TABELA fichamento
