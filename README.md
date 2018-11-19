@@ -32,12 +32,6 @@ alfa
 ### Limitações (em desenvolvimento)
 
 * Não faz backup do Banco
-* Não tem alerta para backup
-* Só faz revisão de um trabalho
-* Não verifica o formato da referência
-* Não verifica senha do banc de dados
-
-
 
 *Pagina Inicial
 
