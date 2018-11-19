@@ -1,8 +1,14 @@
 <?php
 
-$host = $_POST["host"];
-$usuario = $_POST["usuario"];
-$senha = $_POST["senha"];
+//$host = $_POST["host"];
+//$usuario = $_POST["usuario"];
+//$password = $_POST["senha"];
+
+
+$host = "localhost";
+$user = "root";
+$password = "";
+
 
 //verifica se há o diretório
 
@@ -11,9 +17,9 @@ $myfile = fopen($filename, "w") or die("Unable to open file!");
 
 $php_cont = "<?php\r\n";
 $php_cont .= "\$intalled = 1;\r\n";
-$php_cont .= "\$localhost ='".$host."';\r\n";
-$php_cont .= "\$user='".$usuario."';\r\n";
-$php_cont .= "\$senha = '".$senha."';\r\n";
+$php_cont .= "\$host ='".$host."';\r\n";
+$php_cont .= "\$user='".$user."';\r\n";
+$php_cont .= "\$senha = '".$password."';\r\n";
 //$php_cont .= "\$banco='birds';";
 //$php_cont .= "\$bd = @mysql_connect(\$localhost,\$user,\$senha);\r\n";
 //$php_cont .="\$db_selected = mysql_select_db(\$banco, \$bd);\r\n";

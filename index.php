@@ -7,7 +7,7 @@ echo $installed;
 if($installed == 0){
     header("Location: install/index.php");
 }else{
-    $strSelectLogin = "select login from  preferencia where 1";
+    $strSelectLogin = "select login from preferencia where 1";
     $res = mysql_query($strSelectLogin) or die(mysql_error());
     $row = mysql_fetch_assoc($res);
 

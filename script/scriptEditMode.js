@@ -161,8 +161,15 @@ function buscarDadosFichamento(){
 
      var jquery = $.post( "../backend/buscaDadosArtigosById.php",{id : arr[1]}, function() { })
         .done(function(data){
-            data_json = jQuery.parseJSON(data);
-            $("#celula-titulo-fichamento").html(data_json["titulo"]);
+			
+            try {
+				data_json = jQuery.parseJSON(data);
+			} catch(e) {
+				return;
+			}
+	
+			
+			$("#celula-titulo-fichamento").html(data_json["titulo"]);
             $("#conteiner-fichamentos").attr("bibtex", data_json["bibtex"]);
             $("#celula-referencia-artigo").html(data_json["referencia"]);
 
